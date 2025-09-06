@@ -132,8 +132,8 @@
   }
 }
 
-/* Dialogue Display */
-.dialogue-display {
+/* Panel Display (for both image and dialogue steps) */
+.panel-display {
   width: 100%;
   height: 100%;
   position: relative;
@@ -150,6 +150,12 @@
   max-width: 600px;
   width: 90%;
   z-index: 10;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dialogue-overlay.transitioning {
+  opacity: 0;
 }
 
 .dialogue-bubble {
@@ -183,11 +189,11 @@
 @keyframes dialogueSlideUp {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(30px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -233,6 +239,9 @@
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+}
+
+.panel-image.first-load {
   animation: panelFadeIn 0.5s ease-out;
 }
 

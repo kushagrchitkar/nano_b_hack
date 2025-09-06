@@ -186,7 +186,7 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
         {/* Main content area */}
         <div className="panel-display-area">
           {showSlideshow && (
-            <div className={`step-container ${isTransitioning ? 'transitioning' : ''}`}>
+            <div className="step-container">
               
               {/* Scene Description Step */}
               {stepType === 'scene' && (
@@ -198,32 +198,25 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
                 </div>
               )}
               
-              {/* Panel Image Step */}
-              {stepType === 'image' && (
-                <div className="panel-image-container">
-                  <img
-                    src={`http://localhost:8001${currentPanel.image_url}`}
-                    alt={`Panel ${currentPanel.panel_number}`}
-                    className="panel-image"
-                  />
-                </div>
-              )}
-              
-              {/* Dialogue Step */}
-              {stepType === 'dialogue' && (
-                <div className="dialogue-display">
+              {/* Panel Image with Optional Dialogue Overlay */}
+              {(stepType === 'image' || stepType === 'dialogue') && (
+                <div className="panel-display">
                   <div className="panel-image-container">
                     <img
                       src={`http://localhost:8001${currentPanel.image_url}`}
                       alt={`Panel ${currentPanel.panel_number}`}
-                      className="panel-image"
+                      className={`panel-image ${currentStep === 1 ? 'first-load' : ''}`}
                     />
                   </div>
-                  <div className="dialogue-overlay">
-                    <div className="dialogue-bubble">
-                      "{currentPanel.dialogue[getCurrentDialogueIndex()]}"
+                  
+                  {/* Dialogue overlay - only show during dialogue steps */}
+                  {stepType === 'dialogue' && (
+                    <div className={`dialogue-overlay ${isTransitioning ? 'transitioning' : ''}`}>
+                      <div className="dialogue-bubble">
+                        "{currentPanel.dialogue[getCurrentDialogueIndex()]}"
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               )}
               
