@@ -42,7 +42,7 @@ function App() {
     <div className="App" style={{ '--bg-image': `url(${homepageImage})` } as any}>
       <header className="App-header">
         <h1>Comic Generator</h1>
-        <p>Generate comics from historical events in different styles</p>
+        <p>Generate comics in different styles</p>
       </header>
       <main className="App-main">
         <ComicGenerator />

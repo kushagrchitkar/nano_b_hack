@@ -2,7 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-  font-family: 'Griffy', cursive;
+  font-family: 'Bangers', cursive;
 }
 
 .generator-form {
@@ -36,7 +36,7 @@
   border: 3px solid #333;
   border-radius: 8px;
   font-size: 1rem;
-  font-family: 'Griffy', cursive;
+  font-family: 'Bangers', cursive;
   transition: all 0.2s;
   background: #fff;
 }
