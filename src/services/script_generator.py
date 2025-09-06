@@ -71,6 +71,13 @@ NARRATION: [Narrative text]
 
 [Continue for 4-6 panels]
 
+IMPORTANT CHARACTER CONSISTENCY REQUIREMENTS:
+- Use consistent character names throughout the script (e.g., if you introduce "King Rajesh", always refer to him as "King Rajesh", not "the king" or "Rajesh")
+- When characters speak, format dialogue as "Character Name: dialogue text"
+- Include brief character descriptions in scene descriptions when characters first appear
+- Maintain the same characters across panels when telling a continuous story
+- Use distinctive character names that are easy to identify and track
+
 Requirements:
 - Create 4-6 panels that tell the complete story
 - Include rich visual descriptions for each scene
@@ -78,6 +85,7 @@ Requirements:
 - Make it suitable for {style} artistic style
 - Focus on key dramatic moments of the event
 - Ensure historical accuracy where applicable
+- Maintain consistent character naming and descriptions throughout
 
 Begin the script now:
 """

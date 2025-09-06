@@ -34,6 +34,10 @@ output/
 *.xls
 *.xlsx
 *.csv
+# Allow character definitions for debugging
+!characters.json
+!character_definitions/
+# Other JSON files
 *.json
 *.yaml
 *.yml

@@ -1,9 +1,12 @@
 import os
-from typing import Optional
+from typing import Optional, List
 from google import genai
 from google.genai import types
 from ..models.panel import Panel
+from ..models.script import Script
 from .config_service import ConfigService
+from .character_manager import CharacterManagerService
+from .panel_reference import PanelReferenceManager
 
 try:
     from PIL import Image as PILImage
@@ -21,6 +24,8 @@ class ImageGeneratorService:
         self.client = genai.Client(api_key=self.config.get_google_api_key())
         self.output_dir = self.config.get_output_directory()
         self.design_philosophy_dir = "design_philosophy"
+        self.character_manager = CharacterManagerService()
+        self.panel_reference_manager = PanelReferenceManager(self.output_dir)
         self._ensure_output_directory()
         
         if not PIL_AVAILABLE:
@@ -49,33 +54,47 @@ class ImageGeneratorService:
             print(f"Warning: No reference image found for style '{style}' at {style_path}")
             return None
     
-    def generate_panel_image(self, panel: Panel, comic_title: str) -> str:
+    def generate_panel_image(self, panel: Panel, script: Script) -> str:
         """
-        Generate an image for a specific panel.
+        Generate an image for a specific panel with character consistency.
         
         Args:
             panel: Panel object with scene description and details
-            comic_title: Title of the comic for filename generation
+            script: Script object containing all panels and character info
             
         Returns:
             Path to the generated image file
         """
         try:
-            # Get style reference image if available
+            # Get character descriptions for consistency
+            character_descriptions = self.character_manager.get_character_descriptions(script)
+            
+            # Build visual references from previous panels
+            reference_images = self.panel_reference_manager.build_visual_references(
+                panel, script, self.character_manager
+            )
+            
+            # Get style reference image
             style_image = self._get_style_reference_image(panel.style)
             
+            # Build enhanced prompt with character descriptions
+            enhanced_prompt = panel._generate_image_prompt(character_descriptions)
+            
+            # Add reference context if we have visual references
+            if reference_images:
+                reference_context = self.panel_reference_manager.create_reference_context_prompt(
+                    panel.reference_panels
+                )
+                enhanced_prompt = f"{reference_context} {enhanced_prompt}"
+            
             # Prepare contents for generation
+            contents = [enhanced_prompt]
+            
+            # Add all reference images
             if style_image:
-                # Use both text prompt and reference image
-                contents = [panel.image_prompt, style_image]
-            else:
-                # Fall back to text-only prompt with style description
-                fallback_prompt = f"Make a comic panel in the style of {panel.style} which shows: {panel.scene_description}"
-                if panel.dialogue:
-                    fallback_prompt += f" Include dialogue bubbles with: {'; '.join(panel.dialogue)}"
-                if panel.narration:
-                    fallback_prompt += f" Include narration text: {panel.narration}"
-                contents = fallback_prompt
+                contents.append(style_image)
+            
+            contents.extend(reference_images)
             
             response = self.client.models.generate_content(
                 model=self.config.get_model_id(),
@@ -86,7 +105,7 @@ class ImageGeneratorService:
             )
             
             # Generate filename
-            safe_title = self._sanitize_filename(comic_title)
+            safe_title = self._sanitize_filename(script.title)
             filename = f"{safe_title}_panel_{panel.panel_number:02d}.png"
             filepath = os.path.join(self.output_dir, filename)
             
@@ -129,7 +148,7 @@ class ImageGeneratorService:
     
     def generate_all_panel_images(self, script, progress_callback: Optional[callable] = None) -> list[str]:
         """
-        Generate images for all panels in a script.
+        Generate images for all panels in a script with character consistency.
         
         Args:
             script: Script object with panels
@@ -138,6 +157,13 @@ class ImageGeneratorService:
         Returns:
             List of image file paths
         """
+        # Extract and process characters from the script
+        if progress_callback:
+            progress_callback("Extracting characters and building consistency data...")
+        
+        self.character_manager.load_characters()
+        self.character_manager.extract_characters_from_script(script)
+        
         image_paths = []
         
         for i, panel in enumerate(script.panels):
@@ -145,7 +171,7 @@ class ImageGeneratorService:
                 if progress_callback:
                     progress_callback(f"Generating image for panel {panel.panel_number}...")
                 
-                filepath = self.generate_panel_image(panel, script.title)
+                filepath = self.generate_panel_image(panel, script)
                 image_paths.append(filepath)
                 
                 if progress_callback:
@@ -157,5 +183,8 @@ class ImageGeneratorService:
                     progress_callback(error_msg)
                 else:
                     print(error_msg)
+        
+        # Save character data for future use
+        self.character_manager.save_characters()
         
         return image_paths
