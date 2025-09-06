@@ -1,6 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import './ComicSlideshow.css';
 
+// Custom hook for typewriter effect
+const useTypewriter = (text: string, speed: number = 50) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isComplete, setIsComplete] = useState(false);
+  const [skipTyping, setSkipTyping] = useState(false);
+
+  const completeTyping = () => {
+    setSkipTyping(true);
+    setDisplayedText(text);
+    setIsComplete(true);
+  };
+
+  useEffect(() => {
+    if (!text) {
+      setDisplayedText('');
+      setIsComplete(true);
+      return;
+    }
+
+    setDisplayedText('');
+    setIsComplete(false);
+    setSkipTyping(false);
+    let currentIndex = 0;
+
+    const timer = setInterval(() => {
+      if (skipTyping) {
+        setDisplayedText(text);
+        setIsComplete(true);
+        clearInterval(timer);
+        return;
+      }
+
+      if (currentIndex <= text.length) {
+        setDisplayedText(text.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        setIsComplete(true);
+        clearInterval(timer);
+      }
+    }, speed);
+
+    return () => clearInterval(timer);
+  }, [text, speed, skipTyping]);
+
+  return { displayedText, isComplete, completeTyping };
+};
+
 interface PanelInfo {
   panel_number: number;
   image_url: string;
@@ -27,6 +74,34 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showSlideshow, setShowSlideshow] = useState(false);
 
+  // Helper function to calculate total steps for current panel
+  const getMaxStepsForPanel = (panelIndex: number): number => {
+    if (panelIndex >= panels.length) return 0;
+    const panel = panels[panelIndex];
+    // Scene (1) + Image (1) + Dialogues (n)
+    return 2 + panel.dialogue.length;
+  };
+
+  // Helper function to get current step type
+  const getCurrentStepType = (): 'scene' | 'image' | 'dialogue' => {
+    if (currentStep === 0) return 'scene';
+    if (currentStep === 1) return 'image';
+    return 'dialogue';
+  };
+
+  // Helper function to get current dialogue index
+  const getCurrentDialogueIndex = (): number => {
+    return currentStep - 2; // Dialogues start at step 2
+  };
+  
+  // Get current dialogue text for typewriter effect
+  const currentDialogue = getCurrentStepType() === 'dialogue' 
+    ? panels[currentPanelIndex]?.dialogue[getCurrentDialogueIndex()] || ''
+    : '';
+  
+  // Use typewriter effect for current dialogue
+  const { displayedText: typedDialogue, isComplete: typingComplete, completeTyping } = useTypewriter(currentDialogue, 30);
+
   useEffect(() => {
     // Start with black screen, then show first panel after brief delay
     const timer = setTimeout(() => {
@@ -48,26 +123,6 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
       setTimeout(focusOverlay, 100);
     }
   }, [showSlideshow]);
-
-  // Helper function to calculate total steps for current panel
-  const getMaxStepsForPanel = (panelIndex: number): number => {
-    if (panelIndex >= panels.length) return 0;
-    const panel = panels[panelIndex];
-    // Scene (1) + Image (1) + Dialogues (n)
-    return 2 + panel.dialogue.length;
-  };
-
-  // Helper function to get current step type
-  const getCurrentStepType = (): 'scene' | 'image' | 'dialogue' => {
-    if (currentStep === 0) return 'scene';
-    if (currentStep === 1) return 'image';
-    return 'dialogue';
-  };
-
-  // Helper function to get current dialogue index
-  const getCurrentDialogueIndex = (): number => {
-    return currentStep - 2; // Dialogues start at step 2
-  };
 
   // Helper function to get appropriate button text
   const getNextButtonText = (): string => {
@@ -145,6 +200,15 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     console.log('Key pressed:', e.key); // Debug log
+    
+    // If we're in dialogue step and typing is not complete, skip typing animation
+    if ((e.key === 'ArrowRight' || e.key === ' ') && getCurrentStepType() === 'dialogue' && !typingComplete) {
+      e.preventDefault();
+      e.stopPropagation();
+      completeTyping();
+      return;
+    }
+    
     if (e.key === 'ArrowRight' || e.key === ' ') {
       e.preventDefault();
       e.stopPropagation();
@@ -212,8 +276,13 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
                   {/* Dialogue overlay - only show during dialogue steps */}
                   {stepType === 'dialogue' && (
                     <div className={`dialogue-overlay ${isTransitioning ? 'transitioning' : ''}`}>
-                      <div className="dialogue-bubble">
-                        "{currentPanel.dialogue[getCurrentDialogueIndex()]}"
+                      <div 
+                        className="dialogue-bubble"
+                        onClick={() => !typingComplete && completeTyping()}
+                        style={{ cursor: !typingComplete ? 'pointer' : 'default' }}
+                      >
+                        "{typedDialogue}"
+                        {!typingComplete && <span className="typing-cursor">|</span>}
                       </div>
                     </div>
                   )}

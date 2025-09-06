@@ -197,6 +197,22 @@
   }
 }
 
+/* Typing cursor animation */
+.typing-cursor {
+  font-weight: 100;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 /* Progress Indicator */
 .progress-indicator {
   position: absolute;
