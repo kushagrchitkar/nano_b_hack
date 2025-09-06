@@ -72,8 +72,10 @@ class PanelReferenceManager:
         if not reference_panels:
             return ""
         
+        base_instruction = "ABSOLUTELY NO TEXT OR LABELS: Generate the image with zero text, no character labels, no role markers, no floating names, no speech bubbles, no captions, no signs, no written elements of any kind. "
+        
         if len(reference_panels) == 1:
-            return f"Use the reference image from panel {reference_panels[0]} to maintain visual consistency for characters and style."
+            return f"{base_instruction}Use the reference image from panel {reference_panels[0]} to maintain visual consistency for characters and style."
         else:
             panel_list = ", ".join([str(p) for p in reference_panels[:-1]])
-            return f"Use the reference images from panels {panel_list} and {reference_panels[-1]} to maintain visual consistency for characters and style."
+            return f"{base_instruction}Use the reference images from panels {panel_list} and {reference_panels[-1]} to maintain visual consistency for characters and style."
