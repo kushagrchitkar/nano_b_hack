@@ -7,7 +7,7 @@ Provides REST API endpoints for the React frontend to generate comics.
 
 import os
 import sys
-from typing import Optional
+from typing import Optional, List
 from pathlib import Path
 import uuid
 import logging
@@ -53,10 +53,18 @@ class ComicRequest(BaseModel):
     event: str
     style: Optional[str] = "amar_chitra_katha"
 
+class PanelInfo(BaseModel):
+    panel_number: int
+    image_url: str
+    scene_description: str
+    dialogue: List[str] = []
+    narration: Optional[str] = None
+
 class ComicResponse(BaseModel):
     success: bool
     comic_path: Optional[str] = None
     comic_url: Optional[str] = None
+    panels: List[PanelInfo] = []
     error: Optional[str] = None
     task_id: Optional[str] = None
 
@@ -228,29 +236,63 @@ async def get_task_status(task_id: str):
 @app.get("/api/generate-comic-sync", response_model=ComicResponse)
 async def generate_comic_sync(event: str, style: Optional[str] = "amar_chitra_katha"):
     """
-    Synchronous comic generation endpoint (for testing).
+    Synchronous comic generation endpoint with individual panel URLs.
     """
     if not event.strip():
         raise HTTPException(status_code=400, detail="Event description is required")
     
     try:
-        # Generate the comic
-        comic_path = generator.generate_comic(event, style)
+        # Generate script first to get panels
+        logger.info("Generating comic script...")
+        script_text = generator.script_generator.generate_script(event, style)
+        comic_style = style or generator.config.get_comic_style()
+        script = generator.script_parser.parse_script(script_text, event, comic_style)
         
-        # Copy to static directory for serving
-        static_filename = f"comic_{uuid.uuid4()}.png"
-        static_path = os.path.join("static", static_filename)
+        # Generate images for all panels
+        logger.info(f"Generating images for {script.panel_count} panels...")
+        generator.image_generator.generate_all_panel_images(
+            script, 
+            progress_callback=lambda msg: logger.info(f"Image generation: {msg}")
+        )
         
-        # Copy the generated comic to static directory
-        import shutil
-        shutil.copy2(comic_path, static_path)
+        # Copy individual panel images to static directory and create PanelInfo objects
+        panel_infos = []
+        unique_id = str(uuid.uuid4())
         
-        comic_url = f"/static/{static_filename}"
+        for panel in script.panels:
+            if panel.image_path and os.path.exists(panel.image_path):
+                # Copy panel image to static directory
+                panel_filename = f"panel_{unique_id}_{panel.panel_number}.png"
+                panel_static_path = os.path.join("static", panel_filename)
+                
+                import shutil
+                shutil.copy2(panel.image_path, panel_static_path)
+                
+                panel_info = PanelInfo(
+                    panel_number=panel.panel_number,
+                    image_url=f"/static/{panel_filename}",
+                    scene_description=panel.scene_description,
+                    dialogue=panel.dialogue,
+                    narration=panel.narration
+                )
+                panel_infos.append(panel_info)
+        
+        # Assemble final comic
+        logger.info("Assembling final comic...")
+        comic = generator.comic_assembler.assemble_comic(script)
+        
+        # Copy final comic to static directory
+        final_comic_filename = f"comic_{unique_id}.png"
+        final_static_path = os.path.join("static", final_comic_filename)
+        shutil.copy2(comic.output_path, final_static_path)
+        
+        comic_url = f"/static/{final_comic_filename}"
         
         return ComicResponse(
             success=True,
-            comic_path=static_path,
-            comic_url=comic_url
+            comic_path=final_static_path,
+            comic_url=comic_url,
+            panels=panel_infos
         )
         
     except Exception as e:

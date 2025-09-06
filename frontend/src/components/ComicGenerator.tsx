@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import './ComicGenerator.css';
+import ComicSlideshow from './ComicSlideshow';
+
+interface PanelInfo {
+  panel_number: number;
+  image_url: string;
+  scene_description: string;
+  dialogue: string[];
+  narration?: string;
+}
 
 interface ComicGenerationResponse {
   success: boolean;
   comic_path?: string;
   comic_url?: string;
+  panels?: PanelInfo[];
   error?: string;
 }
 
@@ -13,6 +23,8 @@ const ComicGenerator: React.FC = () => {
   const [style, setStyle] = useState('amar_chitra_katha');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedComic, setGeneratedComic] = useState<string | null>(null);
+  const [panels, setPanels] = useState<PanelInfo[]>([]);
+  const [showSlideshow, setShowSlideshow] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,9 +38,10 @@ const ComicGenerator: React.FC = () => {
     setIsGenerating(true);
     setError(null);
     setGeneratedComic(null);
+    setPanels([]);
 
     try {
-      // Use synchronous endpoint for simplicity
+      // Use synchronous endpoint for slideshow functionality
       const response = await fetch(`http://localhost:8001/api/generate-comic-sync?event=${encodeURIComponent(eventDescription)}&style=${style}`);
 
       if (!response.ok) {
@@ -37,8 +50,10 @@ const ComicGenerator: React.FC = () => {
 
       const data: ComicGenerationResponse = await response.json();
 
-      if (data.success && data.comic_url) {
+      if (data.success && data.comic_url && data.panels) {
         setGeneratedComic(`http://localhost:8001${data.comic_url}`);
+        setPanels(data.panels);
+        setShowSlideshow(true);
       } else {
         setError(data.error || 'Failed to generate comic');
       }
@@ -54,7 +69,18 @@ const ComicGenerator: React.FC = () => {
     setEventDescription('');
     setStyle('amar_chitra_katha');
     setGeneratedComic(null);
+    setPanels([]);
+    setShowSlideshow(false);
     setError(null);
+  };
+
+  const handleCloseSlideshow = () => {
+    setShowSlideshow(false);
+  };
+
+  const handleViewFinalComic = () => {
+    setShowSlideshow(false);
+    // generatedComic state is already set, so the final comic will display
   };
 
   return (
@@ -120,7 +146,7 @@ const ComicGenerator: React.FC = () => {
         </div>
       )}
 
-      {generatedComic && (
+      {generatedComic && !showSlideshow && (
         <div className="comic-result">
           <h3>Your Generated Comic</h3>
           <div className="comic-display">
@@ -138,8 +164,24 @@ const ComicGenerator: React.FC = () => {
             >
               Download Comic
             </a>
+            <button
+              onClick={() => setShowSlideshow(true)}
+              className="replay-slideshow-btn"
+              disabled={!panels.length}
+            >
+              Replay Slideshow
+            </button>
           </div>
         </div>
+      )}
+
+      {showSlideshow && panels.length > 0 && generatedComic && (
+        <ComicSlideshow
+          panels={panels}
+          finalComicUrl={generatedComic}
+          onClose={handleCloseSlideshow}
+          onViewFinalComic={handleViewFinalComic}
+        />
       )}
     </div>
   );
