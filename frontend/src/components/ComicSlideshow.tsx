@@ -23,6 +23,7 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
   onViewFinalComic
 }) => {
   const [currentPanelIndex, setCurrentPanelIndex] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0); // 0=scene, 1=image, 2+=dialogue
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showSlideshow, setShowSlideshow] = useState(false);
 
@@ -48,31 +49,98 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
     }
   }, [showSlideshow]);
 
+  // Helper function to calculate total steps for current panel
+  const getMaxStepsForPanel = (panelIndex: number): number => {
+    if (panelIndex >= panels.length) return 0;
+    const panel = panels[panelIndex];
+    // Scene (1) + Image (1) + Dialogues (n)
+    return 2 + panel.dialogue.length;
+  };
+
+  // Helper function to get current step type
+  const getCurrentStepType = (): 'scene' | 'image' | 'dialogue' => {
+    if (currentStep === 0) return 'scene';
+    if (currentStep === 1) return 'image';
+    return 'dialogue';
+  };
+
+  // Helper function to get current dialogue index
+  const getCurrentDialogueIndex = (): number => {
+    return currentStep - 2; // Dialogues start at step 2
+  };
+
+  // Helper function to get appropriate button text
+  const getNextButtonText = (): string => {
+    const stepType = getCurrentStepType();
+    const maxSteps = getMaxStepsForPanel(currentPanelIndex);
+    const isLastStep = currentStep === maxSteps - 1;
+    const isLastPanel = currentPanelIndex === panels.length - 1;
+    
+    if (isLastStep && isLastPanel) {
+      return 'View Full Comic →';
+    } else if (isLastStep) {
+      return 'Next Panel →';
+    } else if (stepType === 'scene') {
+      return 'View Scene →';
+    } else if (stepType === 'image') {
+      const currentPanel = panels[currentPanelIndex];
+      return currentPanel.dialogue.length > 0 ? 'Show Dialogue →' : 'Next Panel →';
+    } else {
+      return 'Next Line →';
+    }
+  };
+
   const handleNext = () => {
-    console.log('Next clicked, current index:', currentPanelIndex, 'total panels:', panels.length);
+    console.log('Next clicked, panel:', currentPanelIndex, 'step:', currentStep);
     if (isTransitioning) return;
     
-    if (currentPanelIndex < panels.length - 1) {
+    const maxSteps = getMaxStepsForPanel(currentPanelIndex);
+    
+    if (currentStep < maxSteps - 1) {
+      // Move to next step within current panel
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentPanelIndex(currentPanelIndex + 1);
+        setCurrentStep(currentStep + 1);
         setIsTransitioning(false);
       }, 300);
     } else {
-      // Last panel - show final comic
-      onViewFinalComic();
+      // Move to next panel or end slideshow
+      if (currentPanelIndex < panels.length - 1) {
+        setIsTransitioning(true);
+        setTimeout(() => {
+          setCurrentPanelIndex(currentPanelIndex + 1);
+          setCurrentStep(0); // Reset to scene description
+          setIsTransitioning(false);
+        }, 300);
+      } else {
+        // Last panel, last step - show final comic
+        onViewFinalComic();
+      }
     }
   };
 
   const handlePrevious = () => {
-    console.log('Previous clicked, current index:', currentPanelIndex);
-    if (isTransitioning || currentPanelIndex === 0) return;
+    console.log('Previous clicked, panel:', currentPanelIndex, 'step:', currentStep);
+    if (isTransitioning) return;
     
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentPanelIndex(currentPanelIndex - 1);
-      setIsTransitioning(false);
-    }, 300);
+    if (currentStep > 0) {
+      // Move to previous step within current panel
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentStep(currentStep - 1);
+        setIsTransitioning(false);
+      }, 300);
+    } else if (currentPanelIndex > 0) {
+      // Move to previous panel's last step
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentPanelIndex(currentPanelIndex - 1);
+        const prevPanelMaxSteps = getMaxStepsForPanel(currentPanelIndex - 1);
+        setCurrentStep(prevPanelMaxSteps - 1);
+        setIsTransitioning(false);
+      }, 300);
+    }
+    // If we're at panel 0, step 0, do nothing (can't go back further)
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -97,7 +165,9 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
   }
 
   const currentPanel = panels[currentPanelIndex];
-  const isLastPanel = currentPanelIndex === panels.length - 1;
+  const stepType = getCurrentStepType();
+  const maxSteps = getMaxStepsForPanel(currentPanelIndex);
+  const canGoBack = currentPanelIndex > 0 || currentStep > 0;
 
   return (
     <div 
@@ -113,47 +183,60 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
           ✕
         </button>
 
-        {/* Panel display area */}
+        {/* Main content area */}
         <div className="panel-display-area">
           {showSlideshow && (
-            <div className={`panel-image-container ${isTransitioning ? 'transitioning' : ''}`}>
-              <img
-                src={`http://localhost:8001${currentPanel.image_url}`}
-                alt={`Panel ${currentPanel.panel_number}`}
-                className="panel-image"
-              />
+            <div className={`step-container ${isTransitioning ? 'transitioning' : ''}`}>
+              
+              {/* Scene Description Step */}
+              {stepType === 'scene' && (
+                <div className="scene-display">
+                  <div className="scene-text">
+                    <h2>Panel {currentPanel.panel_number} of {panels.length}</h2>
+                    <p>{currentPanel.scene_description}</p>
+                  </div>
+                </div>
+              )}
+              
+              {/* Panel Image Step */}
+              {stepType === 'image' && (
+                <div className="panel-image-container">
+                  <img
+                    src={`http://localhost:8001${currentPanel.image_url}`}
+                    alt={`Panel ${currentPanel.panel_number}`}
+                    className="panel-image"
+                  />
+                </div>
+              )}
+              
+              {/* Dialogue Step */}
+              {stepType === 'dialogue' && (
+                <div className="dialogue-display">
+                  <div className="panel-image-container">
+                    <img
+                      src={`http://localhost:8001${currentPanel.image_url}`}
+                      alt={`Panel ${currentPanel.panel_number}`}
+                      className="panel-image"
+                    />
+                  </div>
+                  <div className="dialogue-overlay">
+                    <div className="dialogue-bubble">
+                      "{currentPanel.dialogue[getCurrentDialogueIndex()]}"
+                    </div>
+                  </div>
+                </div>
+              )}
+              
             </div>
           )}
         </div>
 
-        {/* Panel info */}
+        {/* Progress indicator */}
         {showSlideshow && (
-          <div className="panel-info">
-            <div className="panel-counter">
-              Panel {currentPanel.panel_number} of {panels.length}
+          <div className="progress-indicator">
+            <div className="step-counter">
+              Step {currentStep + 1} of {maxSteps} | Panel {currentPanel.panel_number} of {panels.length}
             </div>
-            
-            {currentPanel.scene_description && (
-              <div className="scene-description">
-                {currentPanel.scene_description}
-              </div>
-            )}
-            
-            {currentPanel.dialogue.length > 0 && (
-              <div className="dialogue-section">
-                {currentPanel.dialogue.map((line, index) => (
-                  <div key={index} className="dialogue-line">
-                    "{line}"
-                  </div>
-                ))}
-              </div>
-            )}
-            
-            {currentPanel.narration && (
-              <div className="narration-section">
-                <em>{currentPanel.narration}</em>
-              </div>
-            )}
           </div>
         )}
 
@@ -163,7 +246,7 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
             <button 
               className="nav-btn nav-btn-prev"
               onClick={handlePrevious}
-              disabled={currentPanelIndex === 0 || isTransitioning}
+              disabled={!canGoBack || isTransitioning}
             >
               ← Previous
             </button>
@@ -173,7 +256,7 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
               onClick={handleNext}
               disabled={isTransitioning}
             >
-              {isLastPanel ? 'View Full Comic →' : 'Next →'}
+              {getNextButtonText()}
             </button>
           </div>
         )}
