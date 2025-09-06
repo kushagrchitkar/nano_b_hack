@@ -85,7 +85,8 @@ const ComicGenerator: React.FC = () => {
 
     try {
       // Use synchronous endpoint for slideshow functionality
-      const response = await fetch(`http://localhost:8001/api/generate-comic-sync?event=${encodeURIComponent(eventDescription)}&style=${style}`);
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8001';
+      const response = await fetch(`${apiUrl}/api/generate-comic-sync?event=${encodeURIComponent(eventDescription)}&style=${style}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -94,7 +95,7 @@ const ComicGenerator: React.FC = () => {
       const data: ComicGenerationResponse = await response.json();
 
       if (data.success && data.comic_url && data.panels) {
-        setGeneratedComic(`http://localhost:8001${data.comic_url}`);
+        setGeneratedComic(`${apiUrl}${data.comic_url}`);
         setPanels(data.panels);
         setShowSlideshow(true);
       } else {

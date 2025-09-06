@@ -267,7 +267,7 @@ const ComicSlideshow: React.FC<ComicSlideshowProps> = ({
                 <div className="panel-display">
                   <div className="panel-image-container">
                     <img
-                      src={`http://localhost:8001${currentPanel.image_url}`}
+                      src={`${process.env.REACT_APP_API_URL || 'http://localhost:8001'}${currentPanel.image_url}`}
                       alt={`Panel ${currentPanel.panel_number}`}
                       className={`panel-image ${currentStep === 1 ? 'first-load' : ''}`}
                     />
