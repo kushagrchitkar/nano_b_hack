@@ -5,6 +5,12 @@ from google.genai import types
 from ..models.panel import Panel
 from .config_service import ConfigService
 
+try:
+    from PIL import Image as PILImage
+    PIL_AVAILABLE = True
+except ImportError:
+    PIL_AVAILABLE = False
+
 
 class ImageGeneratorService:
     """Service for generating images for comic panels."""
@@ -14,11 +20,34 @@ class ImageGeneratorService:
         self.config = config_service
         self.client = genai.Client(api_key=self.config.get_google_api_key())
         self.output_dir = self.config.get_output_directory()
+        self.design_philosophy_dir = "design_philosophy"
         self._ensure_output_directory()
+        
+        if not PIL_AVAILABLE:
+            print("Warning: PIL not available. Image-based style references may not work.")
     
     def _ensure_output_directory(self):
         """Ensure the output directory exists."""
         os.makedirs(self.output_dir, exist_ok=True)
+    
+    def _get_style_reference_image(self, style: str) -> Optional[PILImage.Image]:
+        """Get the reference image for a given style."""
+        if not PIL_AVAILABLE:
+            return None
+        
+        # Normalize style name and look for reference image
+        style_filename = f"{style.lower()}.jpg"
+        style_path = os.path.join(self.design_philosophy_dir, style_filename)
+        
+        if os.path.exists(style_path):
+            try:
+                return PILImage.open(style_path)
+            except Exception as e:
+                print(f"Warning: Could not load style reference image {style_path}: {e}")
+                return None
+        else:
+            print(f"Warning: No reference image found for style '{style}' at {style_path}")
+            return None
     
     def generate_panel_image(self, panel: Panel, comic_title: str) -> str:
         """
@@ -32,9 +61,25 @@ class ImageGeneratorService:
             Path to the generated image file
         """
         try:
+            # Get style reference image if available
+            style_image = self._get_style_reference_image(panel.style)
+            
+            # Prepare contents for generation
+            if style_image:
+                # Use both text prompt and reference image
+                contents = [panel.image_prompt, style_image]
+            else:
+                # Fall back to text-only prompt with style description
+                fallback_prompt = f"Make a comic panel in the style of {panel.style} which shows: {panel.scene_description}"
+                if panel.dialogue:
+                    fallback_prompt += f" Include dialogue bubbles with: {'; '.join(panel.dialogue)}"
+                if panel.narration:
+                    fallback_prompt += f" Include narration text: {panel.narration}"
+                contents = fallback_prompt
+            
             response = self.client.models.generate_content(
                 model=self.config.get_model_id(),
-                contents=panel.image_prompt,
+                contents=contents,
                 config=types.GenerateContentConfig(
                     response_modalities=['Text', 'Image']
                 )

@@ -56,7 +56,8 @@ class ComicGenerator:
             
             # Step 2: Parse script into panels for display
             print("\n🎯 Parsing script into panels...")
-            script = self.script_parser.parse_script(script_text, event_description)
+            comic_style = style or self.config.get_comic_style()
+            script = self.script_parser.parse_script(script_text, event_description, comic_style)
             print(f"✅ Parsed {script.panel_count} panels")
             
             # Display the raw script
@@ -106,7 +107,8 @@ class ComicGenerator:
             
             # Step 2: Parse script into panels
             print("\n🎯 Parsing script into panels...")
-            script = self.script_parser.parse_script(script_text, event_description)
+            comic_style = style or self.config.get_comic_style()
+            script = self.script_parser.parse_script(script_text, event_description, comic_style)
             print(f"✅ Parsed {script.panel_count} panels")
             
             # Display script info

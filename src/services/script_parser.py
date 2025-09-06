@@ -7,24 +7,26 @@ from ..models.script import Script
 class ScriptParserService:
     """Service for parsing generated script text into structured Panel and Script objects."""
     
-    def parse_script(self, script_text: str, event_description: str) -> Script:
+    def parse_script(self, script_text: str, event_description: str, style: str = "amar_chitra_katha") -> Script:
         """
         Parse script text into a Script object with Panel instances.
         
         Args:
             script_text: Raw script text from generator
             event_description: Original event description
+            style: Comic style for image generation
             
         Returns:
             Parsed Script object
         """
         title = self._extract_title(script_text)
-        panels = self._extract_panels(script_text)
+        panels = self._extract_panels(script_text, style)
         
         return Script(
             title=title,
             event_description=event_description,
-            panels=panels
+            panels=panels,
+            style=style
         )
     
     def _extract_title(self, script_text: str) -> str:
@@ -40,7 +42,7 @@ class ScriptParserService:
         
         return "Untitled Comic"
     
-    def _extract_panels(self, script_text: str) -> List[Panel]:
+    def _extract_panels(self, script_text: str, style: str) -> List[Panel]:
         """Extract all panels from the script text."""
         panels = []
         
@@ -49,13 +51,13 @@ class ScriptParserService:
         
         for panel_number_str, panel_content in panel_matches:
             panel_number = int(panel_number_str)
-            panel = self._parse_panel_content(panel_number, panel_content)
+            panel = self._parse_panel_content(panel_number, panel_content, style)
             if panel:
                 panels.append(panel)
         
         return panels
     
-    def _parse_panel_content(self, panel_number: int, content: str) -> Optional[Panel]:
+    def _parse_panel_content(self, panel_number: int, content: str, style: str) -> Optional[Panel]:
         """Parse individual panel content into a Panel object."""
         try:
             scene_description = self._extract_scene(content)
@@ -69,7 +71,8 @@ class ScriptParserService:
                 panel_number=panel_number,
                 scene_description=scene_description,
                 dialogue=dialogue,
-                narration=narration
+                narration=narration,
+                style=style
             )
             
         except Exception as e:

@@ -16,4 +16,24 @@ wheels/
 output/
 
 *.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.webp
+*.ico
+*.svg
+*.eps
 
+# Generated scripts
+*.txt
+*.pdf
+*.docx
+*.doc
+*.xls
+*.xlsx
+*.csv
+*.json
+*.yaml
+*.yml
