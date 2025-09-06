@@ -44,18 +44,14 @@ class ScriptParserService:
         """Extract all panels from the script text."""
         panels = []
         
-        # Split script into panel sections
-        panel_sections = re.split(r'PANEL\s+(\d+):', script_text, re.IGNORECASE)
+        # Find all PANEL sections using findall
+        panel_matches = re.findall(r'PANEL\s+(\d+):(.*?)(?=PANEL\s+\d+:|$)', script_text, re.IGNORECASE | re.DOTALL)
         
-        # Skip the first section (everything before PANEL 1)
-        for i in range(2, len(panel_sections), 2):
-            if i < len(panel_sections):
-                panel_number = int(panel_sections[i-1])
-                panel_content = panel_sections[i]
-                
-                panel = self._parse_panel_content(panel_number, panel_content)
-                if panel:
-                    panels.append(panel)
+        for panel_number_str, panel_content in panel_matches:
+            panel_number = int(panel_number_str)
+            panel = self._parse_panel_content(panel_number, panel_content)
+            if panel:
+                panels.append(panel)
         
         return panels
     
@@ -98,12 +94,24 @@ class ScriptParserService:
             return []
         
         dialogue_text = dialogue_section.group(1).strip()
-        if not dialogue_text or dialogue_text.lower() == '[none]':
+        if not dialogue_text or dialogue_text.lower() in ['[none]', 'none']:
             return []
         
         # Split dialogue into individual lines and clean them
         lines = [line.strip() for line in dialogue_text.split('\n') if line.strip()]
-        return [line for line in lines if line and not line.startswith('[')]
+        # Filter out empty lines and extract actual dialogue
+        dialogue_lines = []
+        for line in lines:
+            line = line.strip()
+            if line and not line.startswith('['):
+                # If line contains a character name followed by colon, it's dialogue
+                if ':' in line and not line.lower().startswith('dialogue'):
+                    dialogue_lines.append(line)
+                # Otherwise, if it's not a section header, include it too
+                elif not line.upper().startswith(('SCENE', 'DIALOGUE', 'NARRATION')):
+                    dialogue_lines.append(line)
+        
+        return dialogue_lines
     
     def _extract_narration(self, content: str) -> Optional[str]:
         """Extract narration text from panel content."""
