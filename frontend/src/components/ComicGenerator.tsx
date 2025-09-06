@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ComicGenerator.css';
 import ComicSlideshow from './ComicSlideshow';
 
@@ -18,6 +18,11 @@ interface ComicGenerationResponse {
   error?: string;
 }
 
+interface Quote {
+  author: string;
+  quote: string;
+}
+
 const ComicGenerator: React.FC = () => {
   const [eventDescription, setEventDescription] = useState('');
   const [style, setStyle] = useState('amar_chitra_katha');
@@ -26,6 +31,44 @@ const ComicGenerator: React.FC = () => {
   const [panels, setPanels] = useState<PanelInfo[]>([]);
   const [showSlideshow, setShowSlideshow] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [currentQuote, setCurrentQuote] = useState<Quote | null>(null);
+
+  // Load quotes on component mount
+  useEffect(() => {
+    const loadQuotes = async () => {
+      try {
+        const response = await fetch('/quotes.json');
+        const data = await response.json();
+        setQuotes(data.quotes);
+      } catch (err) {
+        console.error('Failed to load quotes:', err);
+      }
+    };
+    loadQuotes();
+  }, []);
+
+  // Cycle through quotes while generating
+  useEffect(() => {
+    if (isGenerating && quotes.length > 0) {
+      const getRandomQuote = () => {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        return quotes[randomIndex];
+      };
+
+      // Set initial random quote
+      setCurrentQuote(getRandomQuote());
+
+      // Change quote every 3 seconds while generating
+      const interval = setInterval(() => {
+        setCurrentQuote(getRandomQuote());
+      }, 3000);
+
+      return () => clearInterval(interval);
+    } else {
+      setCurrentQuote(null);
+    }
+  }, [isGenerating, quotes]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,7 +127,7 @@ const ComicGenerator: React.FC = () => {
   };
 
   return (
-    <div className="comic-generator">
+    <div className={`comic-generator style-${style}`}>
       <div className="generator-form">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -134,7 +177,12 @@ const ComicGenerator: React.FC = () => {
 
       {isGenerating && (
         <div className="loading-indicator">
-          <div className="spinner"></div>
+          {currentQuote && (
+            <div className="quote-display">
+              <blockquote>"{currentQuote.quote}"</blockquote>
+              <cite>— {currentQuote.author}</cite>
+            </div>
+          )}
           <p>Generating your comic... This may take a few moments.</p>
         </div>
       )}
