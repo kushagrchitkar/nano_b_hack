@@ -83,9 +83,10 @@ const ComicGenerator: React.FC = () => {
     setGeneratedComic(null);
     setPanels([]);
 
+    // Use synchronous endpoint for slideshow functionality
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8001';
+
     try {
-      // Use synchronous endpoint for slideshow functionality
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8001';
       const response = await fetch(`${apiUrl}/api/generate-comic-sync?event=${encodeURIComponent(eventDescription)}&style=${style}`);
 
       if (!response.ok) {
@@ -102,7 +103,7 @@ const ComicGenerator: React.FC = () => {
         setError(data.error || 'Failed to generate comic');
       }
     } catch (err) {
-      setError('Network error occurred while generating comic. Make sure the FastAPI server is running on port 8001.');
+      setError(`Network error occurred while generating comic. Make sure the API server at ${apiUrl} is accessible.`);
       console.error('Comic generation error:', err);
     } finally {
       setIsGenerating(false);
