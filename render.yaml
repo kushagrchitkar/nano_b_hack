@@ -1,5 +1,5 @@
 services:
-  # Backend API service (Python)
+  # Backend API service
   - type: web
     name: nano-comic-api
     env: python
@@ -9,15 +9,12 @@ services:
       - key: GOOGLE_API_KEY
         sync: false
 
-  # Frontend static site (builds inside ./frontend)
-  - type: static
+  # Frontend static site
+  - type: web
     name: nano-comic-frontend
-    rootDirectory: frontend
-    buildCommand: npm ci && npm run build
-    # If Create React App:
-    staticPublishPath: build
-    # If Vite:
-    # staticPublishPath: dist
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
     routes:
       - type: rewrite
         source: "/*"
