@@ -1,0 +1,24 @@
+services:
+  # Backend API service (Python)
+  - type: web
+    name: nano-comic-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api_server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+
+  # Frontend static site (builds inside ./frontend)
+  - type: static
+    name: nano-comic-frontend
+    rootDirectory: frontend
+    buildCommand: npm ci && npm run build
+    # If Create React App:
+    staticPublishPath: build
+    # If Vite:
+    # staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: "/*"
+        destination: "/index.html"
