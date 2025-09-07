@@ -8,6 +8,14 @@ services:
     envVars:
       - key: GOOGLE_API_KEY
         sync: false
+      - key: MODEL_ID
+        value: gemini-2.5-flash-image-preview
+      - key: OUTPUT_DIR
+        value: output
+      - key: COMIC_STYLE
+        value: amar_chitra_katha
+      - key: FRONTEND_ORIGIN
+        sync: false
 
   # Frontend static site
   - type: web

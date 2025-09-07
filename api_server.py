@@ -36,13 +36,26 @@ app = FastAPI(
 )
 
 # Enable CORS for React frontend
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React dev server
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Configure CORS dynamically based on environment
+frontend_origin = os.getenv("FRONTEND_ORIGIN")
+if frontend_origin:
+    allowed_origins = [frontend_origin, "http://localhost:3000"]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allowed_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+else:
+    # Fallback to permissive CORS when no explicit origin is provided
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 # Serve static files (generated comics)
 if not os.path.exists("static"):

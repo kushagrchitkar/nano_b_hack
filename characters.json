@@ -269,7 +269,8 @@
       1,
       4,
       3,
-      5
+      5,
+      2
     ],
     "first_appearance_panel": 1
   },
@@ -405,5 +406,13 @@
       5
     ],
     "first_appearance_panel": 5
+  },
+  "Archangel Gabriel": {
+    "name": "Archangel Gabriel",
+    "visual_description": "Character named Archangel Gabriel",
+    "reference_panels": [
+      2
+    ],
+    "first_appearance_panel": 2
   }
 }
