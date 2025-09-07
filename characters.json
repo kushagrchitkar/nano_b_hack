@@ -1,0 +1,409 @@
+{
+  "Birbal": {
+    "name": "Birbal",
+    "visual_description": "Character named Birbal. described as man, short, beard",
+    "reference_panels": [
+      1,
+      5,
+      6
+    ],
+    "first_appearance_panel": 1
+  },
+  "Emperor Akbar": {
+    "name": "Emperor Akbar",
+    "visual_description": "Character named Emperor Akbar. described as man, short, beard",
+    "reference_panels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "first_appearance_panel": 1
+  },
+  "Gopal": {
+    "name": "Gopal",
+    "visual_description": "Character named Gopal",
+    "reference_panels": [
+      3,
+      4
+    ],
+    "first_appearance_panel": 3
+  },
+  "Madhav": {
+    "name": "Madhav",
+    "visual_description": "Character named Madhav. described as old",
+    "reference_panels": [
+      2,
+      3,
+      4
+    ],
+    "first_appearance_panel": 2
+  },
+  "Lila": {
+    "name": "Lila",
+    "visual_description": "Character named Lila. described as old, man, woman",
+    "reference_panels": [
+      1,
+      3,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Arjun": {
+    "name": "Arjun",
+    "visual_description": "Character named Arjun. described as old, man, woman",
+    "reference_panels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Guru": {
+    "name": "Guru",
+    "visual_description": "Character named Guru. described as old, man",
+    "reference_panels": [
+      2,
+      4
+    ],
+    "first_appearance_panel": 2
+  },
+  "Kael": {
+    "name": "Kael",
+    "visual_description": "Character named Kael. described as young, old, man, beard",
+    "reference_panels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Lyra": {
+    "name": "Lyra",
+    "visual_description": "Character named Lyra. described as young, old, man, beard",
+    "reference_panels": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Elder Rohan": {
+    "name": "Elder Rohan",
+    "visual_description": "Character named Elder Rohan. described as man",
+    "reference_panels": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "first_appearance_panel": 2
+  },
+  "King Philip Ii": {
+    "name": "King Philip Ii",
+    "visual_description": "Character named King Philip Ii",
+    "reference_panels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Servant": {
+    "name": "Servant",
+    "visual_description": "Character named Servant",
+    "reference_panels": [
+      1,
+      3
+    ],
+    "first_appearance_panel": 1
+  },
+  "Queen Olympias": {
+    "name": "Queen Olympias",
+    "visual_description": "Character named Queen Olympias",
+    "reference_panels": [
+      3,
+      5,
+      1
+    ],
+    "first_appearance_panel": 3
+  },
+  "Baby Alexander": {
+    "name": "Baby Alexander",
+    "visual_description": "Character named Baby Alexander. described as old",
+    "reference_panels": [
+      4
+    ],
+    "first_appearance_panel": 4
+  },
+  "Narration": {
+    "name": "Narration",
+    "visual_description": "Character named Narration",
+    "reference_panels": [
+      6,
+      5
+    ],
+    "first_appearance_panel": 6
+  },
+  "Olympias": {
+    "name": "Olympias",
+    "visual_description": "Character named Olympias. described as man, woman, short, beard",
+    "reference_panels": [
+      1,
+      3
+    ],
+    "first_appearance_panel": 1
+  },
+  "First Handmaiden": {
+    "name": "First Handmaiden",
+    "visual_description": "Character named First Handmaiden",
+    "reference_panels": [
+      2
+    ],
+    "first_appearance_panel": 2
+  },
+  "Second Handmaiden": {
+    "name": "Second Handmaiden",
+    "visual_description": "Character named Second Handmaiden",
+    "reference_panels": [
+      2
+    ],
+    "first_appearance_panel": 2
+  },
+  "Herald": {
+    "name": "Herald",
+    "visual_description": "Character named Herald. described as old",
+    "reference_panels": [
+      4
+    ],
+    "first_appearance_panel": 4
+  },
+  "Midwife Elara": {
+    "name": "Midwife Elara",
+    "visual_description": "Character named Midwife Elara. described as old, man, woman, beard",
+    "reference_panels": [
+      1
+    ],
+    "first_appearance_panel": 1
+  },
+  "Servant Lysander": {
+    "name": "Servant Lysander",
+    "visual_description": "Character named Servant Lysander. described as young, old, man",
+    "reference_panels": [
+      3
+    ],
+    "first_appearance_panel": 3
+  },
+  "Midwife Lena": {
+    "name": "Midwife Lena",
+    "visual_description": "Character named Midwife Lena. described as young, old, man",
+    "reference_panels": [
+      3
+    ],
+    "first_appearance_panel": 3
+  },
+  "Aristander": {
+    "name": "Aristander",
+    "visual_description": "Character named Aristander. described as old, man, beard",
+    "reference_panels": [
+      4,
+      5
+    ],
+    "first_appearance_panel": 4
+  },
+  "Rapper Rao": {
+    "name": "Rapper Rao",
+    "visual_description": "Character named Rapper Rao. described as old, man",
+    "reference_panels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Maalik": {
+    "name": "Maalik",
+    "visual_description": "Character named Maalik. described as old, man",
+    "reference_panels": [
+      1,
+      4,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Admirer": {
+    "name": "Admirer",
+    "visual_description": "Character named Admirer. described as old",
+    "reference_panels": [
+      5
+    ],
+    "first_appearance_panel": 5
+  },
+  "Joseph": {
+    "name": "Joseph",
+    "visual_description": "Character named Joseph. described as young, man, woman",
+    "reference_panels": [
+      1,
+      4,
+      2,
+      3,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Mary": {
+    "name": "Mary",
+    "visual_description": "Character named Mary. described as young, man, woman",
+    "reference_panels": [
+      1,
+      4,
+      3,
+      5
+    ],
+    "first_appearance_panel": 1
+  },
+  "Caspar": {
+    "name": "Caspar",
+    "visual_description": "Character named Caspar. described as young, man",
+    "reference_panels": [
+      2,
+      4,
+      5
+    ],
+    "first_appearance_panel": 2
+  },
+  "Melchior": {
+    "name": "Melchior",
+    "visual_description": "Character named Melchior. described as young, man",
+    "reference_panels": [
+      2,
+      4
+    ],
+    "first_appearance_panel": 2
+  },
+  "Balthazar": {
+    "name": "Balthazar",
+    "visual_description": "Character named Balthazar. described as young, man",
+    "reference_panels": [
+      2,
+      4
+    ],
+    "first_appearance_panel": 2
+  },
+  "King Herod": {
+    "name": "King Herod",
+    "visual_description": "Character named King Herod. described as man",
+    "reference_panels": [
+      3
+    ],
+    "first_appearance_panel": 3
+  },
+  "Messenger": {
+    "name": "Messenger",
+    "visual_description": "Character named Messenger. described as man",
+    "reference_panels": [
+      3
+    ],
+    "first_appearance_panel": 3
+  },
+  "Innkeeper": {
+    "name": "Innkeeper",
+    "visual_description": "Character named Innkeeper",
+    "reference_panels": [
+      2
+    ],
+    "first_appearance_panel": 2
+  },
+  "Vatapi": {
+    "name": "Vatapi",
+    "visual_description": "Character named Vatapi",
+    "reference_panels": [
+      2
+    ],
+    "first_appearance_panel": 2
+  },
+  "Ilvala": {
+    "name": "Ilvala",
+    "visual_description": "Character named Ilvala",
+    "reference_panels": [
+      2,
+      5,
+      6
+    ],
+    "first_appearance_panel": 2
+  },
+  "Traveler": {
+    "name": "Traveler",
+    "visual_description": "Character named Traveler",
+    "reference_panels": [
+      3
+    ],
+    "first_appearance_panel": 3
+  },
+  "Sage Agastya": {
+    "name": "Sage Agastya",
+    "visual_description": "Character named Sage Agastya",
+    "reference_panels": [
+      4,
+      5
+    ],
+    "first_appearance_panel": 4
+  },
+  "Major Ellis": {
+    "name": "Major Ellis",
+    "visual_description": "Character named Major Ellis. described as old, man, woman, mustache",
+    "reference_panels": [
+      1
+    ],
+    "first_appearance_panel": 1
+  },
+  "Rani Lakshmibai": {
+    "name": "Rani Lakshmibai",
+    "visual_description": "Character named Rani Lakshmibai. described as old, man, woman, mustache",
+    "reference_panels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "first_appearance_panel": 1
+  },
+  "Tatya Tope": {
+    "name": "Tatya Tope",
+    "visual_description": "Character named Tatya Tope. described as old, child",
+    "reference_panels": [
+      2,
+      4
+    ],
+    "first_appearance_panel": 2
+  },
+  "British Soldier": {
+    "name": "British Soldier",
+    "visual_description": "Character named British Soldier. described as young, old, boy",
+    "reference_panels": [
+      3
+    ],
+    "first_appearance_panel": 3
+  },
+  "Rao Sahib": {
+    "name": "Rao Sahib",
+    "visual_description": "Character named Rao Sahib. described as man, beard",
+    "reference_panels": [
+      5
+    ],
+    "first_appearance_panel": 5
+  }
+}

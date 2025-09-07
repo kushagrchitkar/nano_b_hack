@@ -1,0 +1,732 @@
+{
+    "quotes": [
+      {
+        "author": "Stan Lee",
+        "quote": "With great power comes great responsibility."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "Ideas are bulletproof."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "Comics are a whole new way of seeing things. It’s a whole new art form."
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "Comics are a sequential art. The reader is required to exercise his own imagination, to join in the creative process."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "The noir hero is a knight in blood caked armor. He's dirty and he does his best to deny the fact that he's a hero the whole time."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "A story is a conversation between the writer and the reader. The writer holds up a mirror and says, 'Look at this.'"
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "It's a magical world, Hobbes, ol' buddy... Let's go exploring!"
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "All you need is love. But a little chocolate now and then doesn't hurt."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "Your head's a scary place to be. But I'm not scared of you."
+      },
+      {
+        "author": "Chris Claremont",
+        "quote": "The X-Men are hated, feared and despised collectively by humanity for no other reason than that they are mutants. So what we have here, intended or not, is a book that is about racism, bigotry and prejudice."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "I used to be embarrassed because I was just a comic-book writer while other people were building bridges or going on to medical careers. And then I began to realize: entertainment is one of the most important things in people's lives."
+      },
+      {
+        "author": "Art Spiegelman",
+        "quote": "Comics are a gateway drug to literacy."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "My life is my work. I have no other life."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "People shouldn't be afraid of their governments. Governments should be afraid of their people."
+      },
+      {
+        "author": "Steve Ditko",
+        "quote": "If you have an idea that you think is good, you have to do it. You have to take the risk."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "Superman is the quintessential American hero. He's this rock-solid, this granite-jawed, this perfect moral compass."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "I find my life is a lot easier the lower I keep my expectations."
+      },
+      {
+        "author": "Osamu Tezuka",
+        "quote": "Manga is virtual. Manga is sentiment. Manga is resistance. Manga is bizarre. Manga is pathos. Manga is destruction. Manga is ambition. Manga is art."
+      },
+      {
+        "author": "Harvey Kurtzman",
+        "quote": "Humor is a social lubricant that helps us get over some of the bad spots."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "'Nuff said."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I feel my characters are valid, my characters are people. And I have to make them that way. I have to make them live."
+      },
+      {
+        "author": "Warren Ellis",
+        "quote": "The future is a mess. And it's my job to report it."
+      },
+      {
+        "author": "Garth Ennis",
+        "quote": "You can't have a war story without a moral. If you do, it's just a bunch of people killing each other."
+      },
+      {
+        "author": "Brian Michael Bendis",
+        "quote": "The best stories are the ones that are timeless."
+      },
+      {
+        "author": "Ed Brubaker",
+        "quote": "I love things that are noir and have a real sense of place."
+      },
+      {
+        "author": "Mike Mignola",
+        "quote": "I'm not a writer. I'm a storyteller. I think in pictures."
+      },
+      {
+        "author": "George Pérez",
+        "quote": "I don't care how many characters I have to draw. The more, the merrier."
+      },
+      {
+        "author": "Todd McFarlane",
+        "quote": "I was just a guy who was trying to make a living, and I was lucky enough to be able to do it with a pencil."
+      },
+      {
+        "author": "Jim Lee",
+        "quote": "The beauty of comics is that it's a very intimate medium. It's just you and the reader."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "The past can't hurt you anymore. Not unless you let it."
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "I think of myself as a graphic journalist."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "Excelsior!"
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "The city is a character. It's a living, breathing thing."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "The superhero is the soul of the 20th century."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "The world always seems brighter when you've just made something that wasn't there before."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "There's treasure everywhere."
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "My life has no purpose, no direction, no aim, no meaning, and yet I'm happy. I can't figure it out. What am I doing right?"
+      },
+      {
+        "author": "Art Spiegelman",
+        "quote": "To be a survivor, you have to be a little bit of a monster."
+      },
+      {
+        "author": "Marjane Satrapi",
+        "quote": "The world is not a shitty place. It’s your vision of it that is shitty."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I couldn't stand the sameness of superheroes. I couldn't stand the sameness of the plots."
+      },
+      {
+        "author": "Bill Finger",
+        "quote": "I made Batman a mystery man and a detective, and I gave him a background of science and criminology."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "Another definition of a hero is someone who is concerned about other people's well-being and will go out of his or her way to help them."
+      },
+      {
+        "author": "Hayao Miyazaki",
+        "quote": "The creation of a single world comes from a huge number of fragments and chaos."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "Artists use lies to tell the truth. Yes, I created a lie. But because you believed it, you found something true about yourself."
+      },
+      {
+        "author": "Jeff Smith",
+        "quote": "I wanted to do a classic comic strip, but I also wanted to tell a long story."
+      },
+      {
+        "author": "Robert Crumb",
+        "quote": "I'm just a pen-and-ink character. I'm not a real person."
+      },
+      {
+        "author": "Daniel Clowes",
+        "quote": "I don't think I'm a very good artist. I'm a good storyteller."
+      },
+      {
+        "author": "Chris Ware",
+        "quote": "Comics are the only art form that is delivered to you in a paper bag."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "I'm a cartoonist. I'm not a great artist, but I'm a good cartoonist."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "No one has a perfect life. Everybody has something that he wishes was not the way it is."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "Sometimes you wake up. Sometimes the fall kills you. And sometimes, when you fall, you fly."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "Utopia is not a place, but a state of mind."
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "I write with pictures."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I don't analyze things. I just do them."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "In an era of stress and anxiety, when the present seems unstable and the future unlikely, the natural response is to retreat and seek out the comforts of the past."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "The truth is, most of us discover where we are heading when we arrive."
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "Don't worry about the world coming to an end today. It's already tomorrow in Australia."
+      },
+      {
+        "author": "Todd McFarlane",
+        "quote": "I'm not the best artist. I'm not the best writer. But I'm the best salesman."
+      },
+      {
+        "author": "Jim Lee",
+        "quote": "Drawing is a muscle. You have to keep it in shape."
+      },
+      {
+        "author": "Warren Ellis",
+        "quote": "I'm interested in the future. I'm interested in what's next."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "Face front, true believers!"
+      },
+      {
+        "author": "Mike Mignola",
+        "quote": "The stories I'm telling are all about a guy who knows he's going to have a rotten end."
+      },
+      {
+        "author": "Garth Ennis",
+        "quote": "There's a saying: 'If you're not pissed off, you're not paying attention.'"
+      },
+      {
+        "author": "Brian Michael Bendis",
+        "quote": "Dialogue is the easiest thing to write. It's the hardest thing to get right."
+      },
+      {
+        "author": "Ed Brubaker",
+        "quote": "The past is never dead. It's not even past."
+      },
+      {
+        "author": "George Pérez",
+        "quote": "I've always been a frustrated storyteller. I'm a storyteller who can draw."
+      },
+      {
+        "author": "Chris Claremont",
+        "quote": "My job is to make you care about these characters."
+      },
+      {
+        "author": "Osamu Tezuka",
+        "quote": "Life is a treasure. You should not waste it."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "Batman is a man who has turned his tragedy into a weapon."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "A live body and a dead body contain the same number of particles. Structurally, there's no discernible difference. Life and death are unquantifiable abstracts. Why should I be concerned?"
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "Kid, you're a comic book artist. You're not a fine artist. You're a storyteller."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "The only advice anybody can give is, if you wanna be a writer, keep writing."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "Have you ever been in love? Horrible isn't it? It makes you so vulnerable. It opens your chest and it opens up your heart and it means that someone can get inside you and mess you up."
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "The medium of comics is a storytelling medium. It's not a genre."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "Reality continues to ruin my life."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "Fiction is a truth that we all collectively agree to believe in."
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "I think I'm afraid of being happy because whenever I get too happy, something bad always happens."
+      },
+      {
+        "author": "Art Spiegelman",
+        "quote": "I'm not an artist. I'm a cartoonist."
+      },
+      {
+        "author": "Marjane Satrapi",
+        "quote": "In life you'll meet a lot of jerks. If they hurt you, tell yourself that it's because they're stupid."
+      },
+      {
+        "author": "Hayao Miyazaki",
+        "quote": "Is someone different at age 18 or 60? I believe one stays the same."
+      },
+      {
+        "author": "Robert Crumb",
+        "quote": "When I'm drawing, I'm not thinking about anything. I'm just in a state of being."
+      },
+      {
+        "author": "Daniel Clowes",
+        "quote": "I like to create a world where all the characters are in a state of arrested development."
+      },
+      {
+        "author": "Chris Ware",
+        "quote": "I feel like I'm a novelist who can't write, so I draw."
+      },
+      {
+        "author": "Jeff Smith",
+        "quote": "I wanted to make something that was both epic and personal."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "If you are interested in what you do, that keeps you going."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "Knowledge, like air, is vital to life. Like air, no one should be denied it."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "The American superhero is the best of us. He's the one that we all want to be."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I want my characters to be larger than life. I want them to be mythic."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "Go and make interesting mistakes, make amazing mistakes, make glorious and fantastic mistakes. Break rules. Leave the world more interesting for your being here."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "The surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "We're all stories in the end. Just make it a good one, eh?"
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "The future of comics is in the hands of the creators."
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "Learn from yesterday, live for today, look to tomorrow, rest this afternoon."
+      },
+      {
+        "author": "Jim Lee",
+        "quote": "Style is a byproduct of your limitations."
+      },
+      {
+        "author": "Todd McFarlane",
+        "quote": "I don't believe in talent. I believe in perseverance."
+      },
+      {
+        "author": "Warren Ellis",
+        "quote": "The trick is to keep breathing."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "I wanted them to be diverse. The whole underlying principle of the X-Men was to try to be an anti-bigotry story to show there's good in every person."
+      },
+      {
+        "author": "Garth Ennis",
+        "quote": "I'm not interested in superheroes. I'm interested in people."
+      },
+      {
+        "author": "Brian Michael Bendis",
+        "quote": "Find your voice. And then shout it from the rooftops."
+      },
+      {
+        "author": "Ed Brubaker",
+        "quote": "I want to tell stories that have a beginning, a middle, and an end."
+      },
+      {
+        "author": "Mike Mignola",
+        "quote": "If you're going to have a monster, it should be a cool monster."
+      },
+      {
+        "author": "George Pérez",
+        "quote": "My goal is to make every page a poster."
+      },
+      {
+        "author": "Chris Claremont",
+        "quote": "Character is plot."
+      },
+      {
+        "author": "Osamu Tezuka",
+        "quote": "By believing in yourself, you can turn your dreams into reality."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "Our masters have not heard the people's voice for generations and it is much, much louder than they care to remember."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "The world is a mess, and I just need to rule it."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I am the source. I am the creator. I am the master of my own universe."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "I don't have inspiration. I just have deadlines."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "The price of getting what you want is getting what you once wanted."
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "To me, the comics are a narrative medium, and my intention is to tell stories."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "From now on, I'll connect the dots my own way."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "And in the end, we are all just stories. But some stories are truer than others."
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "Sometimes I lie awake at night, and I ask, 'Where have I gone wrong?' Then a voice says to me, 'This is going to take more than one night.'"
+      },
+      {
+        "author": "Art Spiegelman",
+        "quote": "Comics are a medium, not a genre. It's not a bucket you pour things into. It's a language."
+      },
+      {
+        "author": "Marjane Satrapi",
+        "quote": "I believe that the entire universe is inside every single one of us."
+      },
+      {
+        "author": "Hayao Miyazaki",
+        "quote": "I would like to make a film to tell children 'it's good to be alive'."
+      },
+      {
+        "author": "Robert Crumb",
+        "quote": "Drawing is a way of coming to terms with the world."
+      },
+      {
+        "author": "Daniel Clowes",
+        "quote": "I'm always trying to do something I haven't seen before."
+      },
+      {
+        "author": "Chris Ware",
+        "quote": "I think of comics as a kind of poetry."
+      },
+      {
+        "author": "Jeff Smith",
+        "quote": "I wanted to create a world that you could get lost in."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "I don't know where the ideas come from. They just seem to pop into my head."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "The only thing that's going to save the world is if we're all able to see each other's points of view."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "You can't have a hero without a villain."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I have to draw. It's my life."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "I hope that in this year to come, you make mistakes. Because if you are making mistakes, then you are making new things, trying new things, learning, living, pushing yourself, changing yourself, changing your world."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "I think we all have a lot to learn from Hobbes."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "Your life is a story. You are the author. Write a good one."
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "I don't think of myself as an artist. I think of myself as a storyteller."
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "In the book of life, the answers aren't in the back."
+      },
+      {
+        "author": "Jim Lee",
+        "quote": "I'm not trying to be the best. I'm just trying to be better than I was yesterday."
+      },
+      {
+        "author": "Todd McFarlane",
+        "quote": "If you're not failing, you're not trying hard enough."
+      },
+      {
+        "author": "Warren Ellis",
+        "quote": "The world is full of weird."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "That person who helps others simply because it should or must be done, and because it is the right thing to do, is indeed without a doubt, a real superhero."
+      },
+      {
+        "author": "Garth Ennis",
+        "quote": "You don't need a grand plan, you don't need a great leader. You just need a little bit of hope."
+      },
+      {
+        "author": "Brian Michael Bendis",
+        "quote": "The world is a vampire. Sent to drain."
+      },
+      {
+        "author": "Ed Brubaker",
+        "quote": "I'm a pessimist. But I'm a hopeful pessimist."
+      },
+      {
+        "author": "Mike Mignola",
+        "quote": "I like monsters. I like weird stuff."
+      },
+      {
+        "author": "George Pérez",
+        "quote": "I want to draw everything."
+      },
+      {
+        "author": "Chris Claremont",
+        "quote": "The story is the most important thing."
+      },
+      {
+        "author": "Osamu Tezuka",
+        "quote": "I am not afraid of dying. I am afraid of not living."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "There is no such thing as a coincidence."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "The city is my co-conspirator."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I'm a storyteller. That's what I do."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "I'm a frustrated actor. My whole life is a performance."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "Things need not have happened to be true. Tales and dreams are the shadow-truths that will endure when mere facts are dust and ashes."
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "I'm not interested in superheroes. I'm interested in people."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "It's hard to be a grown-up."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "We're all time travelers, moving at the speed of life."
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "All his life he tried to be a good person. Many times, however, he failed. For after all, he was only human. He wasn't a dog."
+      },
+      {
+        "author": "Art Spiegelman",
+        "quote": "The things I'm interested in are the things that are un-sayable."
+      },
+      {
+        "author": "Marjane Satrapi",
+        "quote": "I want to be a prophet."
+      },
+      {
+        "author": "Hayao Miyazaki",
+        "quote": "My process is thinking, thinking and thinking."
+      },
+      {
+        "author": "Robert Crumb",
+        "quote": "I'm not a happy person."
+      },
+      {
+        "author": "Daniel Clowes",
+        "quote": "I'm not interested in reality. I'm interested in the truth."
+      },
+      {
+        "author": "Chris Ware",
+        "quote": "I think the best stories are the ones that are the most personal."
+      },
+      {
+        "author": "Jeff Smith",
+        "quote": "I wanted to do a story that was a fairy tale for adults."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "I think the world is a better place because of superheroes."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "We have to be the architects of our own future."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "I'm not a role model. I'm a cautionary tale."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I'm not a legend. I'm a storyteller."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "The one thing that you have that nobody else has is you. Your voice, your mind, your story, your vision. So write and draw and build and play and dance and live as only you can."
+      },
+      {
+        "author": "Bill Watterson",
+        "quote": "I'm not a great artist, but I'm a good cartoonist."
+      },
+      {
+        "author": "Grant Morrison",
+        "quote": "You're not in the real world. You're in a story."
+      },
+      {
+        "author": "Will Eisner",
+        "quote": "Comics are a literary form."
+      },
+      {
+        "author": "Charles M. Schulz",
+        "quote": "What's the good of living if you don't have a dog?"
+      },
+      {
+        "author": "Jim Lee",
+        "quote": "I'm a storyteller who uses pictures."
+      },
+      {
+        "author": "Todd McFarlane",
+        "quote": "I'm a businessman who happens to draw."
+      },
+      {
+        "author": "Warren Ellis",
+        "quote": "I'm just a writer. I'm not a prophet."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "I'm just a guy who writes stories."
+      },
+      {
+        "author": "Garth Ennis",
+        "quote": "I have no interest in writing about heroes."
+      },
+      {
+        "author": "Brian Michael Bendis",
+        "quote": "I'm a character guy."
+      },
+      {
+        "author": "Ed Brubaker",
+        "quote": "I'm a genre guy."
+      },
+      {
+        "author": "Mike Mignola",
+        "quote": "I'm a monster guy."
+      },
+      {
+        "author": "George Pérez",
+        "quote": "I'm a crowd guy."
+      },
+      {
+        "author": "Chris Claremont",
+        "quote": "I'm a soap opera guy."
+      },
+      {
+        "author": "Osamu Tezuka",
+        "quote": "I am a storyteller."
+      },
+      {
+        "author": "Alan Moore",
+        "quote": "I'm not a politician. I'm a magician."
+      },
+      {
+        "author": "Frank Miller",
+        "quote": "I'm not a liberal. I'm a radical."
+      },
+      {
+        "author": "Jack Kirby",
+        "quote": "I'm not an artist. I'm a storyteller."
+      },
+      {
+        "author": "Stan Lee",
+        "quote": "I'm not a god. I'm just a writer."
+      },
+      {
+        "author": "Neil Gaiman",
+        "quote": "I'm not a writer. I'm a liar."
+      }
+    ]
+  }

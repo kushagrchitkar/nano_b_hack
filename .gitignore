@@ -38,7 +38,6 @@ output/
 !characters.json
 !character_definitions/
 # Other JSON files
-*.json
 *.yaml
 *.yml
 # Allow render deployment config
@@ -70,3 +69,6 @@ output/
 !frontend/public/**/*.svg
 !frontend/public/**/*.json
 !frontend/public/**/*.txt
+
+# Ensure TypeScript config is included for CRA resolution
+!frontend/tsconfig.json
