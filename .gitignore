@@ -43,3 +43,6 @@ output/
 *.yml
 # Allow render deployment config
 !render.yaml
+
+!package-lock.json
+!package.json
