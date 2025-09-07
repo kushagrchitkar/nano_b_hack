@@ -46,3 +46,27 @@ output/
 
 !package-lock.json
 !package.json
+
+# Allow frontend assets to be tracked
+!frontend/src/**/*.png
+!frontend/src/**/*.jpg
+!frontend/src/**/*.jpeg
+!frontend/src/**/*.gif
+!frontend/src/**/*.bmp
+!frontend/src/**/*.tiff
+!frontend/src/**/*.webp
+!frontend/src/**/*.ico
+!frontend/src/**/*.svg
+!frontend/src/**/*.json
+
+!frontend/public/**/*.png
+!frontend/public/**/*.jpg
+!frontend/public/**/*.jpeg
+!frontend/public/**/*.gif
+!frontend/public/**/*.bmp
+!frontend/public/**/*.tiff
+!frontend/public/**/*.webp
+!frontend/public/**/*.ico
+!frontend/public/**/*.svg
+!frontend/public/**/*.json
+!frontend/public/**/*.txt
